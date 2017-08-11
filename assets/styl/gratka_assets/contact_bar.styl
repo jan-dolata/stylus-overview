@@ -1,0 +1,360 @@
+// @import 'gui/colors';
+// @import 'gui/buttons';
+// @import 'gui/misc';
+
+// $contact-bar-color-1: $quaternary-color-1 !default;
+// $contact-bar-color-2: $quaternary-color-2 !default;
+// $contact-bar-color-3: $white-color !default;
+
+// @mixin m_contactBar ($class-name: 'contactBar') {
+//   .#{$class-name} {
+//     @content;
+//     z-index: 101;
+
+//     .#{$class-name}__content {
+//       position: relative;
+//       width: 100vw;
+//       z-index: 2;
+//       display: flex;
+//       bottom: -40px;
+//       transition: bottom .3s;
+
+//       &.is-animate { // JS
+//         bottom: 2px;
+//       }
+
+//       a {
+//         @include tertiary-button;
+//         @include link;
+//       }
+
+//       a:hover,
+//       a:focus {
+//         background-color: $contact-bar-color-1;
+//         border-color: $contact-bar-color-1;
+//         color: $contact-bar-color-3;
+//         box-shadow: 0 2px $contact-bar-color-2;
+//       }
+
+//       > a:not(.full) { // JS
+//         width: 50%;
+//         float: left;
+//         display: block;
+//       }
+
+//       > a:not(.full):last-of-type {
+//         border-left: 2px solid $contact-bar-color-2;
+//       }
+
+//       > a.opened { // JS
+//         background-color: $contact-bar-color-2;
+//         border-color: $contact-bar-color-2;
+//         box-shadow: 0 2px $contact-bar-color-2;
+//         color: $contact-bar-color-3;
+//       }
+
+//       > a.opened ~ .#{$class-name}__optionsContainer,
+//       > a.opened ~ .#{$class-name}__optionsLayer {
+//         display: block;
+//       }
+
+//       .#{$class-name}__optionsContainer,
+//       .#{$class-name}__optionsLayer {
+//         display: none;
+//       }
+
+//       .#{$class-name}__optionsLayer {
+//         position: fixed;
+//         width: 100%;
+//         height: calc(100% - 40px);
+//         top: 0;
+//       }
+
+//       .#{$class-name}__optionsContainer {
+//         position: absolute;
+//         bottom: 38px;
+//         right: 0;
+//         width: 50%;
+//       }
+
+//       .#{$class-name}__optionsContainer a {
+//         display: block;
+//         margin-bottom: 2px;
+//       }
+
+//       &.#{$class-name}__content--wide > a {
+//         width: 100%;
+//       }
+
+//       &.#{$class-name}__content--wide > a + .#{$class-name}__optionsLayer .#{$class-name}__optionsContainer {
+//         width: 100%;
+//       }
+//     }
+//   }
+// }
+
+
+// @import 'gui/colors'
+// @import 'gui/buttons'
+// @import 'gui/misc'
+
+// $contact-bar-color-1 = $quaternary-color-1
+// $contact-bar-color-2 = $quaternary-color-2
+// $contact-bar-color-3 = $white-color
+
+// m_contactBar($class-name = "contactBar")
+//   .{$class-name}
+//     {block}
+//     z-index: 101
+
+//     .{$class-name}__content
+//       position: relative
+//       width: 100vw
+//       z-index: 2
+//       display: flex
+//       bottom: -40px
+//       transition: bottom .3s
+
+//       &.is-animate // JS
+//         bottom: 2px
+
+//       a
+//         tertiary-button()
+//         link()
+
+//       a:hover,
+//       a:focus
+//         background-color: $contact-bar-color-1
+//         border-color: $contact-bar-color-1
+//         color: $contact-bar-color-3
+//         box-shadow: 0 2px $contact-bar-color-2
+
+//       > a:not(.full) // JS
+//         width: 50%
+//         float: left
+//         display: block
+
+//       > a:not(.full):last-of-type
+//         border-left: 2px solid $contact-bar-color-2
+
+//       > a.opened // JS
+//         background-color: $contact-bar-color-2
+//         border-color: $contact-bar-color-2
+//         box-shadow: 0 2px $contact-bar-color-2
+//         color: $contact-bar-color-3
+
+//       > a.opened ~ .{$class-name}__optionsContainer,
+//       > a.opened ~ .{$class-name}__optionsLayer
+//         display: block
+
+//       .{$class-name}__optionsContainer,
+//       .{$class-name}__optionsLayer {
+//         display: none
+
+//       .{$class-name}__optionsLayer
+//         position: fixed
+//         width: 100%
+//         height: calc(100% - 40px)
+//         top: 0
+
+//       .{$class-name}__optionsContainer
+//         position: absolute
+//         bottom: 38px
+//         right: 0
+//         width: 50%
+
+//       .{$class-name}__optionsContainer a
+//         display: block
+//         margin-bottom: 2px
+
+//       &.{$class-name}__content--wide > a
+//         width: 100%
+
+//       &.{$class-name}__content--wide > a + .{$class-name}__optionsLayer .{$class-name}__optionsContainer
+//         width: 100%
+
+// @import 'gui/*'
+
+display-and-position($type, $pos)
+  display: $type
+  $length = length($pos)
+  if $pos in (full all)
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+  else
+    for $item, $i in $pos
+      if $item in (top bottom left right)
+        if ($i+1) < $length && typeof($pos[$i+1]) == 'unit'
+          {$item}: $pos[$i+1]
+        else
+          {$item}: 0
+
+absolute($args...)
+  display-and-position(absolute, $args)
+
+fixed($args...)
+  display-and-position(fixed, $args)
+
+relative($args...)
+  display-and-position(relative, $args)
+
+size($width, $height = $width)
+  width: $width
+  height: $height
+
+colors($text, $bg, $border = $bg)
+  background-color: $contact-bar-color-2
+  border-color: $contact-bar-color-2
+  color: $contact-bar-color-3
+
+$contact-bar-color-1 = $quaternary-color-1
+$contact-bar-color-2 = $quaternary-color-2
+$contact-bar-color-3 = $white-color
+$contact-bar-box-shadow = 0 2px $contact-bar-color-2
+
+// m_contactBar($class-name = "contactBar")
+//   .{$class-name}
+//     {block}
+//     z-index: 101
+
+//     .{$class-name}__content
+//       // position: relative
+//       relative: top -40px
+//       width: 100vw
+//       z-index: 2
+//       display: flex
+//       // bottom: -40px
+//       transition: bottom .3s
+
+//       &.is-animate // JS
+//         bottom: 2px
+
+//       a
+//         tertiary-button()
+//         link()
+
+//       a:hover,
+//       a:focus
+//         // background-color: $contact-bar-color-1
+//         // border-color: $contact-bar-color-1
+//         // color: $contact-bar-color-3
+//         // box-shadow: 0 2px $contact-bar-color-2
+//         colors: $contact-bar-color-3 $contact-bar-color-2
+//         box-shadow: $contact-bar-box-shadow
+
+//       > a:not(.full) // JS
+//         width: 50%
+//         float: left
+//         display: block
+
+//       > a:not(.full):last-of-type
+//         border-left: 2px solid $contact-bar-color-2
+
+//       > a.opened // JS
+//         // background-color: $contact-bar-color-2
+//         // border-color: $contact-bar-color-2
+//         // box-shadow: 0 2px $contact-bar-color-2
+//         // color: $contact-bar-color-3
+//         colors: $contact-bar-color-3 $contact-bar-color-2
+//         box-shadow: $contact-bar-box-shadow
+
+//       > a.opened ~ .{$class-name}__optionsContainer,
+//       > a.opened ~ .{$class-name}__optionsLayer
+//         display: block
+
+//       .{$class-name}__optionsContainer,
+//       .{$class-name}__optionsLayer
+//         display: none
+
+//       .{$class-name}__optionsLayer
+//         // position: fixed
+//         // width: 100%
+//         // height: calc(100% - 40px)
+//         // top: 0
+//         fixed: top
+//         size: 100% calc(100% - 40px)
+
+//       .{$class-name}__optionsContainer
+//         // position: absolute
+//         // bottom: 38px
+//         // right: 0
+//         width: 50%
+//         absolute: bottom 38px right
+
+//       .{$class-name}__optionsContainer a
+//         display: block
+//         margin-bottom: 2px
+
+//       &.{$class-name}__content--wide > a
+//         width: 100%
+
+//       &.{$class-name}__content--wide > a + .{$class-name}__optionsLayer .{$class-name}__optionsContainer
+//         width: 100%
+
+
+m_contactBar($class-name = "contactBar")
+  .{$class-name}
+    {block}
+    z-index: 101
+
+    & ^[0]__content
+      relative: top -40px
+      width: 100vw
+      z-index: 2
+      display: flex
+      transition: bottom .3s
+
+      &.is-animate // JS
+        bottom: 2px
+
+      a
+        tertiary-button()
+        link()
+
+        &:hover,
+        &:focus
+          colors: $contact-bar-color-3 $contact-bar-color-2
+          box-shadow: $contact-bar-box-shadow
+
+      > a
+        &:not(.full) // JS
+          width: 50%
+          float: left
+          display: block
+
+        &:not(.full):last-of-type
+          border-left: 2px solid $contact-bar-color-2
+
+        &.opened // JS
+          colors: $contact-bar-color-3 $contact-bar-color-2
+          box-shadow: $contact-bar-box-shadow
+
+        &.opened ~ ^[0]__optionsContainer,
+        &.opened ~ ^[0]__optionsLayer
+          display: block
+
+      & ^[0]__optionsContainer,
+      & ^[0]__optionsLayer
+        display: none
+
+      & ^[0]__optionsLayer
+        fixed: top
+        size: 100% calc(100% - 40px)
+
+      & ^[0]__optionsContainer
+        width: 50%
+        absolute: bottom 38px right
+
+      & ^[0]__optionsContainer a
+        display: block
+        margin-bottom: 2px
+
+      &^[0]--wide > a
+        width: 100%
+
+        & + ^[0]__optionsLayer ^[0]__optionsContainer
+          width: 100%
+
+m_contactBar()

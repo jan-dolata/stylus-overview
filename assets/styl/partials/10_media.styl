@@ -1,0 +1,66 @@
+// media
+// https://github.com/jescalan/rupture
+
+.container
+  @media (max-width: 300px)
+    font-size 10px
+
+    @media (min-width: 200px)
+      font-weight 700
+
+font-weight()
+  @media (min-width: 200px)
+    font-weight arguments
+
+.container2
+  @media (max-width: 300px)
+    font-size 10px
+    font-weight 700
+
+rupture.enable-em-breakpoints = true
+
+body
+  +at(1)
+    font-size 10px
+  +mobile()
+    font-size 14px
+  +hd()
+    font-size 30px
+  +below(500px)
+    font-size 10px
+
+.overlap-force
+  text-align center
+  +at(2, anti-overlap: true)
+    text-align right
+  +at(3, anti-overlap: false)
+    text-align left
+  +from-width(4, anti-overlap: 1px)
+    text-align justify
+  +to-width(4, anti-overlap: 0.0625em)
+    border 1px
+  +from-width(5, anti-overlap: 0.0625rem)
+    text-align justify
+  +tablet(anti-overlap: 1px 0.0625em 0.0625rem)
+    font-weight bold
+  +mobile(anti-overlap: true)
+    font-weight normal
+  +desktop(anti-overlap: true)
+    font-style italic
+  +hd(anti-overlap: true)
+    font-style oblique
+
+rupture.scale = 0 400px 800px 1200px
+rupture.anti-overlap = 1px
+
+.some-ui-element
+  text-align center
+  +at(2)
+    text-align right
+  +at(3)
+    text-align left
+
+.ui-element
+  color: blue
+  +above(500px, fallback-class: '.lt-ie9')
+    color: orange

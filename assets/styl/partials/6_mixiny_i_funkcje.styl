@@ -1,0 +1,92 @@
+// mixiny i funkcje
+
+// vendor(prop, args)
+//   -webkit-{prop} args
+//   -moz-{prop} args
+//   {prop} args
+
+// border-radius()
+//   vendor('border-radius', arguments)
+
+// box-shadow()
+//   vendor('box-shadow', arguments)
+
+support-for-ie ?= true
+
+opacity(n)
+  opacity n
+  if support-for-ie
+    filter unquote('progid:DXImageTransform.Microsoft.Alpha(Opacity=' + round(n * 100) + ')')
+
+button
+  opacity: .5
+
+table-grid()
+  margin: arguments
+  tr
+    display: table
+    td
+      display: table-cell
+      {block}
+
+.table
+  table-grid(5px 10px)
+  color: black
+
+.table2
+  +table-grid()
+    padding: 10px
+
+mix(x, m = 10px, s = 16px)
+  padding: x
+  margin: m
+  font-size: s
+
+body
+  mix 1px
+  /**/
+  mix 1px 2px
+  /**/
+  mix 1px 2px, 3px
+  /**/
+  mix(1px 2px, 3px)
+  /**/
+  mix: 2px, , 18px
+
+add(a, b)
+  a + b
+
+subtract(a, b)
+  a - b
+
+sum(x, y, args...)
+  $sum = x + y
+  for i in args
+    $sum = $sum + i
+  $sum
+
+div
+  margin-top: add(5, 6px)
+  margin-left: subtract(b: 2, a: 3)
+  padding: sum(1, 1, 1, 1, 2)
+
+// swap1(a, b)
+//   b a
+
+swap2(a, b)
+  (b a)
+
+swap3(a, b)
+  return b a
+
+swap4 = swap3
+
+invoke(a, b, fn)
+  fn(a, b)
+
+span
+  padding: swap3(1px, 2px)
+  margin: swap4(1px, 2px)
+  top: swap3(1px, 2px)[0]
+  left: invoke(2, 3, add)
+  

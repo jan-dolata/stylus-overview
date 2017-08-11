@@ -1,0 +1,60 @@
+// Selektory
+
+// .a, .b, .c
+//   color: #333
+
+// .a
+// .b
+// .c
+//   background-color: #ddd
+
+// .foo
+//   ^[0]__bar
+//     width: 10px
+
+//     ^[0]:hover ^[1]
+//       width: 20px
+
+/*
+.block {
+  &.block--mod {
+    color: pink;
+  }
+
+  .block__element {
+    color: yellow;
+  
+    &:hover {
+      color: blue;
+    }
+  }
+
+  &:hover &_element {
+    color: red;
+  }
+}
+
+.other {
+  color: red;
+}
+*/
+
+.block
+  &--mod
+    color: pink
+
+  & ^[0]__element
+    color: yellow
+    
+    &:hover
+      color: blue
+    
+    ~/:hover ^[1..-1]
+    /.other
+      color: red
+
+{selector('.this .that:hover')}
+  color: red
+
+{selector('.this', '& .that:hover')}
+  color: green

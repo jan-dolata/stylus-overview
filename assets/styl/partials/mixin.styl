@@ -1,0 +1,83 @@
+/*! mixin.styl */
+
+// mixiny, funkcje i logika
+
+to-rem(size)
+  unit = unit(size)
+  if unit == 'px'
+    (size / 16) rem
+  else if unit == '%'
+    (size / 100) rem
+  else
+    size
+
+font-size()
+  font-size to-rem(arguments)
+  // font-weight 400 unless @font-weight
+
+margin()
+  margin to-rem(arguments)
+
+$ie-support = true
+opacity($opacity, $important = )
+  opacity: $opacity $important
+  if $ie-support
+    -ms-filter: s('alpha(opacity=' + ($opacity * 100) + ')') $important
+    filter: s('alpha(opacity=' + ($opacity * 100) + ')') $important
+
+body
+  opacity: .25
+  opacity: .5 !important
+
+// .article
+//   font-size 5px
+//   margin 10px
+
+//   &__title
+//     font-size 1.5em
+  
+//   &__content
+//     font-size 100%
+  
+// h1
+//   font-size 10px
+//   font-weight 700
+
+a
+  color pink
+
+body
+  color: red
+  ul
+    li
+      color: blue
+      a
+        background-color: @color
+
+display-and-position($type, $pos)
+  display: $type
+  $length = length($pos)
+  if $pos in (full all)
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+  else
+    for $item, $i in $pos
+      if $item in (top bottom left right)
+        if ($i+1) < $length && typeof($pos[$i+1]) == 'unit'
+          {$item}: $pos[$i+1]
+        else
+          {$item}: 0
+
+absolute($args...)
+  display-and-position absolute $args
+
+fixed($args...)
+  display-and-position fixed $args
+
+body
+  fixed: top left 40px right 50%
+  absolute: full
+  fixed all
+  

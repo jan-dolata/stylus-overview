@@ -1,0 +1,76 @@
+// operatory
+/*
+ .
+ []
+ ! ~ + -
+ is defined
+ ** * / %
+ + -
+ ... ..
+ <= >= < >
+ in
+ == is != is not isnt
+ is a
+ && and || or
+ ?:
+ = := ?= += -= *= /= %=
+ not
+ if unless
+*/
+
+list = 1 2 3
+list2 = 1..5
+list3 = 1...5
+
+body
+  list-0: list[0]
+  list-1: list[1]
+  list2: list2
+  list3: list3
+
+  font: 14px/1.4
+  font: (14px/1.4)
+
+  margin: 4 % 3
+  margin: 3**2
+
+  color: #fff - #ca3
+  color: #555 + 10%
+  color: #a00 + 180deg
+
+  margin: '%s %s 0 %s' % (1px 2px 3px)
+
+/*
+true examples:
+  0% 
+  0px
+  1px 
+  -1
+  -1px
+  hey
+  'hey'
+  (0 0 0)
+  ('' '')
+
+false examples:
+ 0 
+ null
+ false
+ ''
+*/
+
+// param = 10px
+.test
+  if param is defined
+    margin param
+  else
+    margin 5px
+
+body
+  n = 5
+  foo: (n)em
+  foo: (n)%
+  foo: (n + 5)%
+  foo: (n * 5)px
+  foo: unit(n + 5, '%')
+  foo: unit(n, deg)

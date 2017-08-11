@@ -1,0 +1,43 @@
+// http://stylus-lang.com/docs/bifs.html
+
+// wbudowane metody
+
++prefix-classes('foo-')
+  .bar
+    width: 10px
+
+font-size-1 = 10px
+font-size-2 = 20px
+font-size-3 = 30px
+
+for i in 1..3
+  .text-{i}
+    font-size: lookup('font-size-' + i)
+
+body
+  float: opposite-position(right)
+
+.img
+  width: image-size('404.jpg')[0]
+  height: image-size('404.jpg')[1]
+
+something()
+  add-property('bar', 1 2 3)
+  s('bar')
+
+body
+  foo: something()
+
+// ma jeszcze inne opcje
+json('media-queries.json')
+
+body
+  @media small
+    font-size: 16px
+
+  @media tablet-landscape
+    font-size: 20px
+
+use("add.js")
+.test-js
+  width dodaj(10, 100)

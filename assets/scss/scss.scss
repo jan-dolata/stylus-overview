@@ -1,0 +1,125 @@
+// .block {
+//   &.block--mod {
+//     color: pink;
+//   }
+
+//   .block__element {
+//     color: yellow;
+  
+//     &:hover {
+//       color: blue;
+//     }
+//   }
+
+//   &:hover &_element {
+//     color: red;
+//   }
+// }
+
+// .other {
+//   color: red;
+// }
+
+
+// @mixin test($name: 'article') {
+//   .#{$name} {
+//     @content;
+    
+//     .#{$name}__title {
+//       font-size: 20px;
+//     }
+//   }
+// }
+
+// .test1 {
+//   @include test {
+//     content: 'test1';
+//   }
+// }
+
+// .test2 {
+//   @include test(box) {
+//   	content: 'test2';
+//   }
+// }
+
+// .container {
+//   @media (max-width: 300px) {
+//     font-size: 10px;
+
+//     @media (min-width: 200px) {
+//       font-weight: 700;
+//     }
+//   }
+// }
+
+// @mixin font-weight($args...) {
+//   @media (min-width: 200px) {
+//     font-weight: $args;
+//   }
+// }
+
+// .container2 {
+//   @media (max-width: 300px) {
+//     font-size: 10px;
+
+//     @include font-weight(700);
+//   }
+// }
+
+// .cos {
+//   font: 10px;
+
+//   &.cos_ktos {
+//     font: 12px;
+
+//     &.cos_ktos--tam {
+//       margin: 10px;
+//     }
+//   }
+// }
+
+form {
+  button {
+    padding: 10px;
+  }
+}
+
+a.button {
+  @extend form;
+  // @extend form button;
+}
+
+// @mixin header($degree: false) {
+//   @if $degree {
+//     @if $degree == 1 {
+//       font-size: 1.875rem; // 30px
+//     } @else if $degree == 2 {
+//       font-size: 1.625rem; // 26px
+//     } @else if $degree == 3 {
+//       font-size: 1.313rem; // 21px
+//     } @else if $degree == 4 {
+//       font-size: 1.188rem; // 19px
+//     } @else if $degree == 5 {
+//       font-size: 1.125rem; // 18px
+//     } @else {
+//       font-size: 1rem; // 16px
+//     }
+//     line-height: 1.27;
+//   } @else {
+//     @warn 'Nie podałeś stopnia nagłówka!';
+//   }
+// }
+
+// .test1 {
+//   @include header(8);
+// }
+
+// .test2 {
+//   @include header(1);
+// }
+
+// .test3 {
+//   @include header(5);
+//   color: #999 - 100deg;
+// }

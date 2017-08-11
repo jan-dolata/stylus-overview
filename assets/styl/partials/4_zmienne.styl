@@ -1,0 +1,47 @@
+// Zmienne
+
+size = 10px
+
+.box
+  width: size
+  height: size
+
+.box
+  width: w = 10px
+  height: w
+
+.box
+  width: 10px
+  height: @width
+
+.a
+  color: #111
+
+  .b
+    color: #222
+
+    .c
+      color: @color
+
+position()
+  position: arguments
+  z-index: 1 unless @z-index
+
+#logo
+  z-index: 20
+  position: absolute
+
+#logo2
+  position: absolute
+
+
+name = 'body .box'
+
+{name}
+  font-size: 16px
+
+// default
+x = 1
+x := 2
+body
+  z-index: x

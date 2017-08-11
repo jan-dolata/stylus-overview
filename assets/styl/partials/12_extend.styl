@@ -1,0 +1,50 @@
+.message {
+  padding: 10px;
+  border: 1px solid #eee;
+}
+
+.warning {
+  @extend .message;
+  color: #E2E21E;
+}
+
+// extend nested
+form
+  button
+    padding: 10px
+
+a.button
+  @extend form button
+
+// multi extend
+.a
+  color: red
+
+.b
+  width: 100px
+
+.c
+  @extend .a, .b
+  height: 200px
+
+// placeholder
+$foo
+  color: #FFF
+
+$foo2
+  color: red
+
+.bar
+  background: #000
+  @extends $foo
+
+.baz
+  @extends $foo
+
+
+// optional
+$specialDesign
+  color: #FFF
+
+.btn
+  @extend .design !optional, $specialDesign !optional

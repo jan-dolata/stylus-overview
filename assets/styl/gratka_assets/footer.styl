@@ -1,0 +1,78 @@
+// header($degree = false)
+//   if $degree
+//     if $degree == 1
+//       font-size: 1.875rem // 30px
+//     else if $degree == 2
+//       font-size: 1.625rem // 26px
+//     else if $degree == 3
+//       font-size: 1.313rem // 21px
+//     else if $degree == 4
+//       font-size: 1.188rem // 19px
+//     else if $degree == 5
+//       font-size: 1.125rem // 18px
+//     else
+//       font-size: 1rem // 16px
+//     line-height: 1.27
+//   else
+//     warn("Nie podałeś stopnia nagłówka!")
+
+// .test1
+//   header(8)
+
+// .test2
+//   header(1)
+
+// .test3
+//   header(5)
+
+$base-font-size = 16
+$base-line-height = 1.27
+$h-font-sizes = 0 30 26 21 19 18
+
+to-rem($size)
+  if typeof($size) != 'unit'
+    $size
+  else
+    if unit($size) == 'px'
+      unit($size / $base-font-size, 'rem')
+    else if unit($size) == '%'
+      unit($size / 100, 'rem')
+    else
+      $size
+
+font-size-h($index)
+  if $index < length($h-font-sizes)
+    $size = unit($h-font-sizes[$index], 'px')
+    to-rem($size)
+  else
+    1rem
+
+font-size($size, $args...)
+  if substr('' + $size, 0, 1) == 'h'
+    $index = convert(substr('' + $size, 1))
+    font-size: font-size-h($index) $args
+    add-property('line-height', $base-line-height)
+  else
+    font-size: to-rem($size) $args
+
+important($rule, $args...)
+  {$rule}: $args !important
+
+.test
+  /*! % */
+  font-size: 120%
+
+  /*! px */
+  font-size: 10px !important
+
+  /*! em */
+  font-size: 1em
+
+  /*! like h1 */
+  font-size: h1
+
+  /*! like h3 */
+  font-size h3 !important
+
+  /*! other */
+  important font-size x-large
