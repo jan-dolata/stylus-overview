@@ -1,3 +1,16 @@
+# Instalacja projektu
+
+```sh
+  git clone git@github.com:jan-dolata/stylus-overview.git
+  cd stylus-overview
+  npm install
+```
+
+```sh
+  npm run watch // nasłuchiwanie zmian
+  npm run dev // jednorazowa kompilacja
+```
+
 # Stylus
 
 ## Dokumentacja
@@ -15,7 +28,6 @@
 
 * [Stylus Best Practices] - zbiór zasad pomagających przy pracy, propozycja nazewnictwa itp.
 * [Sass vs. LESS vs. Stylus] - porównanie trzech preprocesorów
-* [Why I Choose Stylus] - kolejne uzasadnienia
 
 ## Konvertery
 
