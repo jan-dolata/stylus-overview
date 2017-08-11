@@ -1,15 +1,21 @@
 # Instalacja projektu
 
 ```sh
-  git clone git@github.com:jan-dolata/stylus-overview.git
-  cd stylus-overview
-  npm install
+$ git clone git@github.com:jan-dolata/stylus-overview.git
+$ cd stylus-overview
+$ npm install
 ```
 
+Nasłuchiwanie zmian:
 ```sh
-  npm run watch // nasłuchiwanie zmian
-  npm run dev // jednorazowa kompilacja
+$ npm run watch
+
+Jednorazowa kompilacja
+```sh
+$ npm run dev
 ```
+
+Dodatkowe skrypty w `package.json`.
 
 # Stylus
 
