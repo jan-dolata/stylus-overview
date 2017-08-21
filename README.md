@@ -9,6 +9,7 @@ $ npm install
 Nasłuchiwanie zmian:
 ```sh
 $ npm run watch
+```
 
 Jednorazowa kompilacja
 ```sh
