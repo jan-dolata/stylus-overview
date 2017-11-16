@@ -20,6 +20,7 @@ body
 .img
   width: image-size('404.jpg')[0]
   height: image-size('404.jpg')[1]
+  background-image: embedurl('404.jpg')
 
 something()
   add-property('bar', 1 2 3)
@@ -38,6 +39,8 @@ body
   @media tablet-landscape
     font-size: 20px
 
-use("add.js")
+use("plugins/p-add.js")
+use("plugins/p-pow.js")
 .test-js
-  width dodaj(10, 100)
+  width p-add(10, 100)
+  height p-pow(5, 3)

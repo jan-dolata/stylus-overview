@@ -34,23 +34,24 @@ table-grid()
   color: black
 
 .table2
-  +table-grid()
+  +table-grid(5px)
     padding: 10px
 
-mix(x, m = 10px, s = 16px)
+mix(x, m = 0, s = 0)
   padding: x
   margin: m
   font-size: s
 
 body
+  /*mix 1px*/
   mix 1px
-  /**/
+  /*mix 1px 2px*/
   mix 1px 2px
-  /**/
+  /*mix 1px 2px, 3px*/
   mix 1px 2px, 3px
-  /**/
+  /*mix(1px 2px, 3px)*/
   mix(1px 2px, 3px)
-  /**/
+  /*mix: 2px, , 18px*/
   mix: 2px, , 18px
 
 add(a, b)
@@ -89,4 +90,44 @@ span
   margin: swap4(1px, 2px)
   top: swap3(1px, 2px)[0]
   left: invoke(2, 3, add)
-  
+
+// bem
+has(name)
+  & &__{name}
+    {block}
+
+when(name)
+  &^[0]^[1..-1]--{name}
+    {block}
+
+mod(name)
+  &&--{name}
+    {block}
+
+change(name)
+  & ^[0]__{name}
+    {block}
+
+// przyklad bloku
+article(class-name = 'article')
+  .{class-name}
+    color plum
+
+    +has('title')
+      color pink
+
+      +when('red')
+        color red
+    
+    +mod('wide')
+      margin 0 10px
+
+      +change('title')
+        margin 0 15px
+
+// article()
+
+config = '../import_test/b'
+mixin = 'article'
+@import config
+{mixin}()
